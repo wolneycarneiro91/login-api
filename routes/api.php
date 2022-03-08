@@ -12,8 +12,7 @@ Route::prefix('auth')->group(function(){
 Route::group(['middleware' => 'auth:sanctum'], function () {
     
     Route::post('/produtos', function (DefaultResponse $defaultResponse, Request $request) {
-        $request['chaveAPI'] = env('CHAVE_API');
-        dd($request);
+        $request['chaveAPI'] = env('CHAVE_API');        
         $response = Http::withHeaders([
             'Accept' => 'application/json',
         ])->post(config('microservices.avaliable.micro_01.url') . '/api/produtos', $request->all());
