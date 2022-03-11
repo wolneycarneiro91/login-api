@@ -19,18 +19,20 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         return $defaultResponse->response($response); 
     });
     
-    Route::get('/produtos', function (DefaultResponse $defaultResponse, Request $request) {
-        $request['chaveAPI'] = env('CHAVE_API');
-        dd($request);
-        $response = Http::withHeaders([
-            'Accept' => 'application/json',
-        ])->get(config('microservices.avaliable.micro_01.url') . '/api/produtos', $request->all());
-        return $defaultResponse->response($response); 
-    });    
+    // Route::get('/produtos', function (DefaultResponse $defaultResponse, Request $request) {
+    //     $request['chaveAPI'] = env('CHAVE_API');
+    //     dd($request);
+    //     $response = Http::withHeaders([
+    //         'Accept' => 'application/json',
+    //     ])->get(config('microservices.avaliable.micro_01.url') . '/api/produtos', $request->all());
+    //     return $defaultResponse->response($response); 
+    // });    
     Route::post('logout',[App\Http\Controllers\Auth\Api\LoginController::class,'logout']);    
 
 
 });
+
+Route::get('autenticar',[App\Http\Controllers\Auth\Api\RegisterController::class,'autenticado'])->middleware('auth:sanctum');    
 
 
 
