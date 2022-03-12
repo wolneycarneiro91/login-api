@@ -32,7 +32,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
 });
 
-Route::get('autenticar',[App\Http\Controllers\Auth\Api\RegisterController::class,'autenticado'])->middleware('auth:sanctum');    
+Route::get('autenticar',[App\Http\Controllers\Auth\Api\RegisterController::class,'verifyPermission'])->middleware('auth:sanctum');
+
+
 
 
 
