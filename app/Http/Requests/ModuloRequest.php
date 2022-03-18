@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class ModuloRequest extends FormRequest
 {
     public function authorize()
     {
@@ -13,10 +13,6 @@ class UserRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required|min:6',
-        ];
+        return ['descricao'=>'required'];
     }
 }

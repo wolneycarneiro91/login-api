@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
@@ -31,7 +32,7 @@ class UserController extends Controller
         } 
         catch (\Exception $e) {
             DB::rollback();
-            return response()->json('Não foi possível cadastrar'.$e, 406);
+            return response()->json(["message"=>'Não foi possível cadastrar',"error"=>$e], Response::HTTP_NOT_ACCEPTABLE );
         }             
     }
     public function show($id)
@@ -59,7 +60,7 @@ class UserController extends Controller
         catch (\Exception $e)
              {
              DB::rollback();
-             return response()->json('Não foi possível atualizar', 406);
+             return response()->json(["message"=>'Não foi possível atualizar',"error"=>$e], Response::HTTP_NOT_ACCEPTABLE );
             }                             
     }
 
@@ -78,7 +79,7 @@ class UserController extends Controller
         catch (\Exception $e)
              {
                 DB::rollback();
-                return response()->json('Não foi possível excluir', 406);
+                return response()->json(["message"=>'Não foi possível excluir',"error"=>$e], Response::HTTP_NOT_ACCEPTABLE );
             }                
     }    
     
